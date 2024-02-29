@@ -29,10 +29,20 @@ async function run() {
         await client.connect();
 
         const menuCollection  = client.db("bistroDb").collection("menu");
+        const reviewsCollection  = client.db("bistroDb").collection("reviews");
 
+        //Get Menu Data
         app.get('/menu', async(req,res) =>{
 
             const result =  await menuCollection.find().toArray();
+            res.send(result);
+
+        })
+
+        //Get Reviews Data
+        app.get('/reviews', async(req,res) =>{
+
+            const result =  await reviewsCollection.find().toArray();
             res.send(result);
 
         })
